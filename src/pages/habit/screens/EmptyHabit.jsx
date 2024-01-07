@@ -1,16 +1,16 @@
-import { View, Text } from 'react-native'
-import React from 'react'
+import {View, Text} from 'react-native';
+import React from 'react';
 import Icon from 'react-native-vector-icons/SimpleLineIcons';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import {useNavigation} from '@react-navigation/native';
-import color from '../../design/colorSchema';
+import color from '../../../design/colorSchema';
 
 const EmptyHabit = ({setState}) => {
-    const navigation = useNavigation();
-    const handleButtonPress = () => {
-        // navigation.navigate('Home');
-        setState('create')
-    };
+  const navigation = useNavigation();
+  const handleButtonPress = () => {
+    // navigation.navigate('Home');
+    setState('create');
+  };
   return (
     <View
       style={{
@@ -35,6 +35,6 @@ const EmptyHabit = ({setState}) => {
       </TouchableOpacity>
     </View>
   );
-}
+};
 
-export default EmptyHabit
+export default EmptyHabit;

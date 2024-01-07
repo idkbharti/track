@@ -1,13 +1,12 @@
 import {View, Text} from 'react-native';
 
-import color from '../../design/colorSchema';
+import color from '../../../design/colorSchema';
 import EmptyHabit from './EmptyHabit';
-import { useState } from 'react';
+import {useState} from 'react';
 import CreateHabit from './CreateHabit';
 
 const Habit = () => {
-  const [state,setState]=useState('create')
-
+  const [state, setState] = useState('create');
 
   return (
     <View
@@ -16,7 +15,7 @@ const Habit = () => {
         backgroundColor: color.dark.primary,
         alignItems: state === 'empty' ? 'center' : null,
         justifyContent: state === 'empty' ? 'center' : null,
-        padding:20
+        padding: 20,
       }}>
       {state === 'empty' ? <EmptyHabit setState={setState} /> : null}
       {state === 'create' ? <CreateHabit setState={setState} /> : null}

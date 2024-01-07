@@ -11,7 +11,7 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {useNavigation} from '@react-navigation/native';
 import Todo from './todo/Todo';
 import Exercise from './excercise/Exercise';
-import Habit from './habit/Habit';
+import Habit from './habit/screens/Habit';
 import Profile from './Profile';
 import color from '../design/colorSchema';
 

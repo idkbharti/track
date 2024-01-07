@@ -1,33 +1,30 @@
 import {View, Text, Button, TouchableOpacity, Modal} from 'react-native';
 import Icon from 'react-native-vector-icons/SimpleLineIcons';
-import React, { useState } from 'react';
-import color from '../../design/colorSchema';
-import Input from '../../components/Input';
-import InputButton from '../../components/InputButton';
-import { FlatList } from 'react-native-gesture-handler';
-import Icons from "./icons"
+import React, {useState} from 'react';
+import color from '../../../design/colorSchema';
+import Input from '../../../components/Input';
+import InputButton from '../../../components/InputButton';
+import {FlatList} from 'react-native-gesture-handler';
+import Icons from '../icons';
 import StreakGoal from './StreakGoal';
-import colorsPalette from './colorsPalette';
-
+import colorsPalette from '../colorsPalette';
 
 const CreateHabit = () => {
   const [title, setTitle] = useState('');
-  const [desc,setDes] = useState('')
+  const [desc, setDes] = useState('');
   const [completion, setCompletion] = useState(1);
-   const [modalVisible, setModalVisible] = useState(false);
-   const [streakGoalModalVisible, setStreakGoalModalVisible] = useState(false);
-  // const [showGoal,setShowGoal] = useState('true')
+  const [streakGoalModalVisible, setStreakGoalModalVisible] = useState(false);
+  const [selectedOption, setSelectedOption] = useState('None');
   const [selectedIcon, setSelectedIcon] = useState(null);
 
-
-//   const allSimpleLineIcons = Icon.getRawGlyphMap();
-//   const iconSlice = Object.keys(allSimpleLineIcons); 
-  const handleStreakGoal = () => {
-    setStreakGoalModalVisible(true);
-  };
   const handleSelectIcon = icon => {
     setSelectedIcon(icon);
   };
+
+  const handleModal = () => {
+    setStreakGoalModalVisible(true);
+  };
+
   return (
     <View style={{position: 'relative'}}>
       <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
@@ -41,39 +38,17 @@ const CreateHabit = () => {
           <Icon name="check" size={20} color={color.dark.gray} />
         </View>
       </View>
-      <Input
-        label="Name"
-        text={title}
-        setText={setTitle}
-      />
-      <Input
-        label="Description"
-        text={desc}
-        setText={setDes}
-      />
+      <Input label="Name" text={title} setText={setTitle} />
+      <Input label="Description" text={desc} setText={setDes} />
       <View style={{flexDirection: 'row'}}>
         <InputButton
           label="Streak Goal"
-          selectedOptions="None"
+          selectedOptions={selectedOption}
           icon="arrow-right"
-          handleOptions={handleStreakGoal}
+          handleOption={handleModal}
+          selectedOption={selectedOption}
+          setSelectedOption={setSelectedOption}
         />
-        <InputButton
-          label="Remainder"
-          selectedOptions="None"
-          icon="arrow-right"
-          handleOptions={() => {}}
-        />
-      </View>
-      <View style={{flexDirection: 'row'}}>
-        <InputButton
-          label="Completions Per Day"
-          selectedOptions={`${completion} / Day`}
-          handleOptions={() => {}}
-        />
-
-
-
 
         <Modal
           animationType="slide"
@@ -87,14 +62,29 @@ const CreateHabit = () => {
               flex: 1,
               justifyContent: 'center',
               alignItems: 'center',
-              backgroundColor: 'rgba(0, 0, 0, 0.7)',
+              backgroundColor: 'rgba(0, 0, 0, 0.8)',
             }}>
-            <StreakGoal />
+            <StreakGoal
+              selectedOption={selectedOption}
+              setSelectedOption={setSelectedOption}
+              setStreakGoalModalVisible={setStreakGoalModalVisible}
+            />
           </View>
         </Modal>
 
-
-
+        <InputButton
+          label="Remainder"
+          selectedOptions="None"
+          icon="arrow-right"
+          handleOptions={() => {}}
+        />
+      </View>
+      <View style={{flexDirection: 'row'}}>
+        <InputButton
+          label="Completions Per Day"
+          selectedOptions={`${completion} / Day`}
+          handleOptions={() => {}}
+        />
 
         <View
           style={{
